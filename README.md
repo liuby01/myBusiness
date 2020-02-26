@@ -26,8 +26,10 @@ A simple SSM-CRUD project
 - 前端页面：JSP
 - 前端框架：Bootstrap
 
-## 预览![itemInfo](.\screenhots\itemInfo.png)
+## 预览
 
-![addItem](.\screenhots\addItem.png)
+![itemInfo](screenhots\itemInfo.png)
 
-![updateItem](.\screenhots\updateItem.png)
+![addItem](screenhots\addItem.png)
+
+![updateItem](screenhots\updateItem.png)
