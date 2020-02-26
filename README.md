@@ -28,8 +28,8 @@ A simple SSM-CRUD project
 
 ## 预览
 
-![itemInfo](screenhots\itemInfo.png)
+![itemInfo](screenhots/itemInfo.png)
 
-![addItem](screenhots\addItem.png)
+![addItem](screenhots/addItem.png)
 
-![updateItem](screenhots\updateItem.png)
+![updateItem](screenhots/updateItem.png)
