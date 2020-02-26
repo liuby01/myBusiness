@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 有关目录SQL语句 -->
+<!-- 扫描Dao包 -->
+<mapper namespace="com.chinasoft.dao.CatalogueDao">
+
+	<!-- 查询所有目录 -->
+	<select id="selectAllCatalogue" resultType="Catalogue">
+		SELECT c.caid,c.caname,cadescribe,COUNT(g.goid) AS gotype FROM catalogue c LEFT JOIN goods g ON c.caid = g.caid GROUP BY c.caid
+	</select>
+
+	<!-- 根据名字查询目录 -->
+	<select id="selectCatalogueByName" resultType="Catalogue">
+	SELECT c.caid,c.caname,COUNT(g.goid) AS gotype,cadescribe FROM catalogue c JOIN goods g ON c.caid = g.caid AND caname LIKE CONCAT('%',#{caname},'%') GROUP BY c.caid
+	</select>
+
+	<!-- 增加目录 -->
+	<insert id="insertCatalogue">
+		INSERT INTO catalogue(caname,cadescribe) VALUES (#{caname},#{cadescribe})
+	</insert>
+
+	<!-- 删除目录 -->
+	<delete id="deleteCatalogue">
+		DELETE FROM catalogue where caid = #{caid}
+	</delete>
+
+	<!-- 修改目录 -->
+	<update id="updateCatalogue">
+		UPDATE catalogue 
+			<set>
+				<if test="caname != null and caname.length() > 0">
+					caname = #{caname},
+				</if>
+				
+				<if test="cadescribe != null and cadescribe.length() > 0">
+					cadescribe = #{cadescribe}
+				</if>
+			</set>  
+		WHERE caid = #{caid}
+	</update>
+
+</mapper>

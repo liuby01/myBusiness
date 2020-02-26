@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 有关商品SQL语句 -->
+<!-- 扫描Dao包 -->
+<mapper namespace="com.chinasoft.dao.GoodsDao">
+
+	<!-- 查询所有商品 -->
+	<select id="selectAllGoods" resultType="Goods">
+		SELECT * FROM goods g,catalogue c WHERE g.caid = c.caid
+	</select>
+
+	<!-- 根据名字查询商品 -->
+	<select id="selectGoodsByName" resultType="Goods">
+		SELECT g.*,c.caname FROM goods g,catalogue c WHERE g.caid = c.caid AND goname LIKE CONCAT('%',#{goname},'%')
+	</select>
+	
+	<!-- 增加商品 -->
+	<insert id="insertGoods">
+		INSERT INTO goods(goname,caid,gonumber,price,godescribe) VALUES (#{goname},#{caid},#{gonumber},#{price},#{godescribe})
+	</insert>
+
+	<!-- 删除商品 -->
+	<delete id="deleteGoods">
+		DELETE FROM goods where goid = #{goid}
+	</delete>
+
+	<!-- 修改商品 -->
+	<update id="updateGoods">
+		UPDATE goods SET goname = #{goname},gonumber = #{gonumber},price = #{price},godescribe = #{godescribe} WHERE goid = #{goid}
+	</update>
+
+</mapper>
